@@ -1,1 +1,1 @@
-require 'fog/digitalocean/compute'
+require 'fog/vultr/compute'

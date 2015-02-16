@@ -2,7 +2,7 @@ require 'fog/core'
 require 'fog/json'
 
 module Fog
-  module DigitalOcean
+  module Vultr
     extend Fog::Provider
     service(:compute, 'Compute')
   end

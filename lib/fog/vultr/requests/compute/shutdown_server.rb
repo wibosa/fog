@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class Real
         def shutdown_server( id )
           request(

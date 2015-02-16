@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class Real
         def list_servers(options = {})
           request(

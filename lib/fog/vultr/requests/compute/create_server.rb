@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class Real
         #
         # FIXME: missing ssh keys support
@@ -46,7 +46,7 @@ module Fog
           response.status = 200
 
           # New York 2 (region id 4) is currently the only region that supports
-          # private networking.  The Digital Ocean IP will return a null
+          # private networking.  The Vultr IP will return a null
           # private_ip_address for any other region
           has_private_ip = !!options[:private_networking] && (region_id == 4)
 

@@ -1,19 +1,19 @@
 require 'fog/core/collection'
-require 'fog/digitalocean/models/compute/server'
+require 'fog/vultr/models/compute/server'
 
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class Servers < Fog::Collection
-        model Fog::Compute::DigitalOcean::Server
+        model Fog::Compute::Vultr::Server
 
         # Returns list of servers
-        # @return [Fog::Compute::DigitalOcean::Servers] Retrieves a list of servers.
-        # @raise [Fog::Compute::DigitalOcean::NotFound] - HTTP 404
-        # @raise [Fog::Compute::DigitalOcean::BadRequest] - HTTP 400
-        # @raise [Fog::Compute::DigitalOcean::InternalServerError] - HTTP 500
-        # @raise [Fog::Compute::DigitalOcean::ServiceError]
-        # @see https://developers.digitalocean.com/v1/droplets/
+        # @return [Fog::Compute::Vultr::Servers] Retrieves a list of servers.
+        # @raise [Fog::Compute::Vultr::NotFound] - HTTP 404
+        # @raise [Fog::Compute::Vultr::BadRequest] - HTTP 400
+        # @raise [Fog::Compute::Vultr::InternalServerError] - HTTP 500
+        # @raise [Fog::Compute::Vultr::ServiceError]
+        # @see https://developers.vultr.com/v1/droplets/
         def all(filters = {})
           data = service.list_servers.body['droplets']
           load(data)
@@ -21,11 +21,11 @@ module Fog
 
         # Creates a new server and populates ssh keys
         #
-        # @return [Fog::Compute::DigitalOcean::Server]
-        # @raise [Fog::Compute::DigitalOcean::NotFound] - HTTP 404
-        # @raise [Fog::Compute::DigitalOcean::BadRequest] - HTTP 400
-        # @raise [Fog::Compute::DigitalOcean::InternalServerError] - HTTP 500
-        # @raise [Fog::Compute::DigitalOcean::ServiceError]
+        # @return [Fog::Compute::Vultr::Server]
+        # @raise [Fog::Compute::Vultr::NotFound] - HTTP 404
+        # @raise [Fog::Compute::Vultr::BadRequest] - HTTP 400
+        # @raise [Fog::Compute::Vultr::InternalServerError] - HTTP 500
+        # @raise [Fog::Compute::Vultr::ServiceError]
         # @note This creates an SSH public key object and assigns it to the server on creation
         # @example
         #   service.servers.bootstrap :name => 'bootstrap-server',
@@ -64,12 +64,12 @@ module Fog
 
         # Retrieves server
         # @param [String] id for server to be returned
-        # @return [Fog::Compute::DigitalOcean:Server]
-        # @raise [Fog::Compute::DigitalOcean::NotFound] - HTTP 404
-        # @raise [Fog::Compute::DigitalOcean::BadRequest] - HTTP 400
-        # @raise [Fog::Compute::DigitalOcean::InternalServerError] - HTTP 500
-        # @raise [Fog::Compute::DigitalOcean::ServiceError]
-        # @see https://developers.digitalocean.com/v1/droplets/
+        # @return [Fog::Compute::Vultr:Server]
+        # @raise [Fog::Compute::Vultr::NotFound] - HTTP 404
+        # @raise [Fog::Compute::Vultr::BadRequest] - HTTP 400
+        # @raise [Fog::Compute::Vultr::InternalServerError] - HTTP 500
+        # @raise [Fog::Compute::Vultr::ServiceError]
+        # @see https://developers.vultr.com/v1/droplets/
         def get(id)
           server = service.get_server_details(id).body['droplet']
           new(server) if server

@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class SshKey < Fog::Model
         identity :id
 

@@ -1,12 +1,12 @@
-require 'fog/digitalocean/models/compute/ssh_key'
+require 'fog/vultr/models/compute/ssh_key'
 
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class SshKeys < Fog::Collection
         identity :href
 
-        model Fog::Compute::DigitalOcean::SshKey
+        model Fog::Compute::Vultr::SshKey
 
         def all
           data = service.list_ssh_keys.body['ssh_keys']

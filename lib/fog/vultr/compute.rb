@@ -1,14 +1,14 @@
-require 'fog/digitalocean/core'
+require 'fog/vultr/core'
 
 module Fog
   module Compute
-    class DigitalOcean < Fog::Service
-      requires     :digitalocean_api_key
-      requires     :digitalocean_client_id
+    class Vultr < Fog::Service
+      requires     :vultr_api_key
+      requires     :vultr_client_id
 
-      recognizes   :digitalocean_api_url
+      recognizes   :vultr_api_url
 
-      model_path   'fog/digitalocean/models/compute'
+      model_path   'fog/vultr/models/compute'
       model        :server
       collection   :servers
       model        :flavor
@@ -20,7 +20,7 @@ module Fog
       model        :ssh_key
       collection   :ssh_keys
 
-      request_path 'fog/digitalocean/requests/compute'
+      request_path 'fog/vultr/requests/compute'
       request      :list_servers
       request      :list_images
       request      :list_regions
@@ -38,7 +38,7 @@ module Fog
       request      :get_ssh_key
       request      :destroy_ssh_key
 
-      # request :digitalocean_resize
+      # request :vultr_resize
 
       class Mock
         def self.data
@@ -55,25 +55,25 @@ module Fog
         end
 
         def initialize(options={})
-          @digitalocean_api_key = options[:digitalocean_api_key]
+          @vultr_api_key = options[:vultr_api_key]
         end
 
         def data
-          self.class.data[@digitalocean_api_key]
+          self.class.data[@vultr_api_key]
         end
 
         def reset_data
-          self.class.data.delete(@digitalocean_api_key)
+          self.class.data.delete(@vultr_api_key)
         end
       end
 
       class Real
         def initialize(options={})
-          @digitalocean_api_key   = options[:digitalocean_api_key]
-          @digitalocean_client_id = options[:digitalocean_client_id]
-          @digitalocean_api_url   = options[:digitalocean_api_url] || \
-                                            "https://api.digitalocean.com"
-          @connection             = Fog::XML::Connection.new(@digitalocean_api_url)
+          @vultr_api_key   = options[:vultr_api_key]
+          @vultr_client_id = options[:vultr_client_id]
+          @vultr_api_url   = options[:vultr_api_url] || \
+                                            "https://api.vultr.com"
+          @connection             = Fog::XML::Connection.new(@vultr_api_url)
         end
 
         def reload
@@ -82,8 +82,8 @@ module Fog
 
         def request(params)
           params[:query] ||= {}
-          params[:query].merge!(:api_key   => @digitalocean_api_key)
-          params[:query].merge!(:client_id => @digitalocean_client_id)
+          params[:query].merge!(:api_key   => @vultr_api_key)
+          params[:query].merge!(:client_id => @vultr_client_id)
 
           response = retry_event_lock { parse @connection.request(params) }
 

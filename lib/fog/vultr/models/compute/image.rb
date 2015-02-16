@@ -2,7 +2,7 @@ require 'fog/core/model'
 
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class Image < Fog::Model
         identity  :id
         attribute :name

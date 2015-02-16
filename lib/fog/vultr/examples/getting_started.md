@@ -1,8 +1,8 @@
 # Getting started: the compute service
 
-You'll need a DigitalOcean account and API key to use this provider.
+You'll need a Vultr account and API key to use this provider.
 
-Get one from https://cloud.digitalocean.com/api_access (fog currently uses the v1 API)
+Get one from https://cloud.vultr.com/api_access (fog currently uses the v1 API)
 
 Write down the Client Key and API Key, you'll need both to use the service.
 
@@ -10,9 +10,9 @@ Write down the Client Key and API Key, you'll need both to use the service.
 ## Connecting, retrieving and managing server objects
 
 Before we start, I guess it will be useful to the reader to know
-that Fog servers are 'droplets' in DigitalOcean's parlance.
+that Fog servers are 'droplets' in Vultr's parlance.
 'Server' is the Fog way to name VMs, and we have
-respected that in the DigitalOcean's Fog provider.
+respected that in the Vultr's Fog provider.
 
 First, create a connection to the host:
 
@@ -20,15 +20,15 @@ First, create a connection to the host:
 require 'fog'
 
 docean = Fog::Compute.new({
-  :provider => 'DigitalOcean',
-  :digitalocean_api_key   => 'poiuweoruwoeiuroiwuer', # your API key here
-  :digitalocean_client_id => 'lkjasoidfuoiu'          # your client key here
+  :provider => 'Vultr',
+  :vultr_api_key   => 'poiuweoruwoeiuroiwuer', # your API key here
+  :vultr_client_id => 'lkjasoidfuoiu'          # your client key here
 })
 ```
 
 ## SSH Key Management
 
-Access to DigitalOcean servers can be managed with SSH keys. These can be assigned to servers at creation time so you can access them without having to use a password.
+Access to Vultr servers can be managed with SSH keys. These can be assigned to servers at creation time so you can access them without having to use a password.
 
 Creating a key:
 
@@ -83,7 +83,7 @@ docean.servers.each do |server|
   server.state
   server.backups_enabled
   server.image_id
-  server.flavor_id # server 'size' in DigitalOcean's API parlance
+  server.flavor_id # server 'size' in Vultr's API parlance
   server.region_id
 end
 ```

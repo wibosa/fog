@@ -1,11 +1,11 @@
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class Real
         #
         # Delete a SSH public key from your account
         #
-        # @see https://developers.digitalocean.com/ssh-keys
+        # @see https://developers.vultr.com/ssh-keys
         #
         def destroy_ssh_key(id)
           request(

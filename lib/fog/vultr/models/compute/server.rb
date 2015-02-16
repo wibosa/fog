@@ -2,8 +2,8 @@ require 'fog/compute/models/server'
 
 module Fog
   module Compute
-    class DigitalOcean
-      # A DigitalOcean Droplet
+    class Vultr
+      # A Vultr Droplet
       #
       class Server < Fog::Compute::Server
         identity  :id
@@ -48,7 +48,7 @@ module Fog
         # The server consumes resources while powered off
         # so you are still charged.
         #
-        # @see https://www.digitalocean.com/community/questions/am-i-charged-while-my-droplet-is-in-a-powered-off-state
+        # @see https://www.vultr.com/community/questions/am-i-charged-while-my-droplet-is-in-a-powered-off-state
         def shutdown
           requires :id
           service.shutdown_server self.id
@@ -60,7 +60,7 @@ module Fog
         # The server consumes resources while powered off
         # so you are still charged.
         #
-        # @see https://www.digitalocean.com/community/questions/am-i-charged-while-my-droplet-is-in-a-powered-off-state
+        # @see https://www.vultr.com/community/questions/am-i-charged-while-my-droplet-is-in-a-powered-off-state
         def stop
           requires :id
           service.power_off_server self.id
@@ -92,7 +92,7 @@ module Fog
             commands << %{echo "#{public_key}" >> ~/.ssh/authorized_keys}
           end
 
-          # wait for DigitalOcean to be ready
+          # wait for Vultr to be ready
           wait_for { sshable?(credentials) }
 
           Fog::SSH.new(ssh_ip_address, username, credentials).run(commands)
@@ -103,9 +103,9 @@ module Fog
         # Usually called by Fog::Collection#create
         #
         #   docean = Fog::Compute.new({
-        #     :provider => 'DigitalOcean',
-        #     :digitalocean_api_key   => 'key-here',      # your API key here
-        #     :digitalocean_client_id => 'client-id-here' # your client key here
+        #     :provider => 'Vultr',
+        #     :vultr_api_key   => 'key-here',      # your API key here
+        #     :vultr_client_id => 'client-id-here' # your client key here
         #   })
         #   docean.servers.create :name => 'foobar',
         #                     :image_id  => image_id_here,
@@ -138,7 +138,7 @@ module Fog
 
         # Destroy the server, freeing up the resources.
         #
-        # DigitalOcean will stop charging you for the resources
+        # Vultr will stop charging you for the resources
         # the server was using.
         #
         # Once the server has been destroyed, there's no way
@@ -148,8 +148,8 @@ module Fog
         # destroy the server after creating it. If you try to destroy
         # the server too fast, the destroy event may be lost and the
         # server will remain running and consuming resources, so
-        # DigitalOcean will keep charging you.
-        # Double checked this with DigitalOcean staff and confirmed
+        # Vultr will keep charging you.
+        # Double checked this with Vultr staff and confirmed
         # that it's the way it works right now.
         #
         # Double check the server has been destroyed!
@@ -169,9 +169,9 @@ module Fog
           state == 'active'
         end
 
-        # DigitalOcean API does not support updating server state
+        # Vultr API does not support updating server state
         def update
-          msg = 'DigitalOcean servers do not support updates'
+          msg = 'Vultr servers do not support updates'
           raise NotImplementedError.new(msg)
         end
 

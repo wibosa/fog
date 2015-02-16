@@ -1,11 +1,11 @@
 require 'fog/core/collection'
-require 'fog/digitalocean/models/compute/region'
+require 'fog/vultr/models/compute/region'
 
 module Fog
   module Compute
-    class DigitalOcean
+    class Vultr
       class Regions < Fog::Collection
-        model Fog::Compute::DigitalOcean::Region
+        model Fog::Compute::Vultr::Region
 
         def all
           load service.list_regions.body['regions']
