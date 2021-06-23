@@ -30,10 +30,6 @@ def date
   Date.today.to_s
 end
 
-def rubyforge_project
-  name
-end
-
 def gemspec_file
   "#{name}.gemspec"
 end
@@ -72,9 +68,6 @@ namespace :test do
   end
   task :openvz do
       sh("export FOG_MOCK=#{mock} && bundle exec shindont tests/openvz")
-  end
-  task :cloudstack do
-      sh("export FOG_MOCK=#{mock} && bundle exec shindont tests/cloudstack")
   end
   task :vcloud_director do
       sh("export FOG_MOCK=#{mock} && bundle exec shindont tests/vcloud_director")
@@ -203,8 +196,6 @@ task :gemspec => :validate do
   replace_header(spec, :name)
   replace_header(spec, :version)
   replace_header(spec, :date)
-  #comment this out if your rubyforge_project has a different name
-  replace_header(spec, :rubyforge_project)
 
   File.open(gemspec_file, 'w') { |io| io.write(spec) }
   puts "Updated #{gemspec_file}"

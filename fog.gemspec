@@ -11,9 +11,8 @@ Gem::Specification.new do |s|
   ## If your rubyforge_project name is different, then edit it and comment out
   ## the sub! line in the Rakefile
   s.name              = "fog"
-  s.version           = "2.1.0"
-  s.date              = "2018-11-11"
-  s.rubyforge_project = "fog"
+  s.version           = "2.2.0"
+  s.date              = "2019-06-18"
 
   ## Make sure your summary is short. The description may be as long
   ## as you like.
@@ -44,28 +43,28 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md]
 
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 2.5.0'
 
-  s.add_dependency("fog-core", "~> 1.45")
+  s.add_dependency("fog-core", "~> 2.1")
   s.add_dependency("fog-json")
   s.add_dependency("fog-xml", "~> 0.1.1")
 
-  s.add_dependency("json", "~> 2.0")
+  s.add_dependency("json", "~> 2.3")
   s.add_dependency("ipaddress", "~> 0.5")
 
   # Modular providers (please keep sorted)
   s.add_dependency("fog-aliyun",">= 0.1.0")
   s.add_dependency("fog-atmos")
   s.add_dependency("fog-aws", ">= 0.6.0")
-  s.add_dependency("fog-brightbox", "~> 0.4")
-  s.add_dependency("fog-cloudatcost", "~> 0.1.0")
+  s.add_dependency("fog-brightbox", ">= 0.4", "< 2.0")
+  s.add_dependency("fog-cloudatcost", "~> 0.4")
+  s.add_dependency("fog-cloudstack", "~> 0.1.0")
   s.add_dependency("fog-digitalocean", ">= 0.3.0")
-  s.add_dependency("fog-dnsimple", "~> 1.0")
-  s.add_dependency("fog-dynect", "~> 0.0.2")
+  s.add_dependency("fog-dnsimple", "~> 2.1")
+  s.add_dependency("fog-dynect", ">= 0.0.2", "< 0.6.0")
   s.add_dependency("fog-ecloud", "~> 0.1")
   s.add_dependency("fog-google", "~> 1.0")
   s.add_dependency("fog-internet-archive")
-  s.add_dependency("fog-joyent")
   s.add_dependency("fog-local")
   s.add_dependency("fog-openstack")
   s.add_dependency("fog-ovirt")
@@ -93,7 +92,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency("pry")
   s.add_development_dependency("rake")
   s.add_development_dependency("rbvmomi")
-  s.add_development_dependency("rubocop", "0.52.1")
+  s.add_development_dependency("rubocop", "1.17.0")
   s.add_development_dependency("shindo", "~> 0.3.4")
   s.add_development_dependency("simplecov")
   s.add_development_dependency("thor")
@@ -101,7 +100,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency("rspec-core")
   s.add_development_dependency("rspec-expectations")
   s.add_development_dependency("vcr")
-  s.add_development_dependency("webmock","~>1.22.2")
+  s.add_development_dependency("webmock","~>3.13.0")
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {spec,tests}/*`.split("\n")

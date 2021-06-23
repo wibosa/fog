@@ -2,6 +2,12 @@ require "spec_helper"
 require "fog/bin"
 require "helpers/bin"
 
+# workaround autoload which doesn't match renested/deprecated classes
+require "fog/aws/cdn"
+require "fog/aws/compute"
+require "fog/aws/dns"
+require "fog/aws/storage"
+
 describe AWS do
   include Fog::BinSpec
 

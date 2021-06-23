@@ -3,7 +3,7 @@ require 'fog/core/credentials'
 module Fog
   class << self
     def available_providers
-      @available_providers ||= Fog.providers.values.select {|provider| Kernel.const_get(provider).available?}.sort
+      @available_providers ||= Fog.providers.values.select {|provider| Kernel.const_get(provider).try(:available?)}.sort
     end
 
     def registered_providers
@@ -54,8 +54,8 @@ end
 require 'fog/bin/atmos'
 require 'fog/bin/aws'
 require 'fog/bin/brightbox'
-require 'fog/bin/cloudstack'
 require 'fog/bin/clodo'
+require 'fog/bin/cloudstack'
 require 'fog/bin/digitalocean'
 require 'fog/bin/dnsimple'
 require 'fog/bin/dnsmadeeasy'
@@ -68,7 +68,6 @@ require 'fog/bin/go_grid'
 require 'fog/bin/google'
 require 'fog/bin/ibm'
 require 'fog/bin/internet_archive'
-require 'fog/bin/joyent'
 require 'fog/bin/linode'
 require 'fog/bin/local'
 require 'fog/bin/bare_metal_cloud'
@@ -93,4 +92,3 @@ require 'fog/bin/xenserver'
 require 'fog/bin/cloudsigma'
 require 'fog/bin/openvz'
 require 'fog/bin/opennebula'
-require 'fog/bin/aliyun'
